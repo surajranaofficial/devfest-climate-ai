@@ -1377,7 +1377,7 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
             
             try {
-                const response = await fetch('/api/ai-assistant', {
+                const response = await fetch('api/ai-assistant', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ question, location })
@@ -1443,7 +1443,7 @@
             resultDiv.innerHTML = '<div class="loading">🌱 Generating your personalized plan...</div>';
             
             try {
-                const response = await fetch('/api/action-plan', {
+                const response = await fetch('api/action-plan', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ location, lifestyle, concerns })
@@ -1576,7 +1576,7 @@
 
         async function submitAction(action) {
             try {
-                const response = await fetch('/api/submit-action', {
+                const response = await fetch('api/submit-action', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ action })
@@ -1801,7 +1801,7 @@
             }, 100);
             
             try {
-                const response = await fetch('/api/ai-assistant', {
+                const response = await fetch('api/ai-assistant', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
@@ -1862,7 +1862,7 @@
             }, 100);
             
             try {
-                const response = await fetch('/api/ai-assistant', {
+                const response = await fetch('api/ai-assistant', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
