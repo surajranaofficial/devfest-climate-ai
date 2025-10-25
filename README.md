@@ -331,7 +331,7 @@ GET /health
 
 ## 🎬 Demo Video
 
-🎥 **Watch Full Demo:** [YouTube Link](#) *(Coming Soon)*
+🎥 **Watch Full Demo:** [https://youtu.be/brDd9QEsH_o](https://youtu.be/brDd9QEsH_o)
 
 **Demo Highlights:**
 - AI Assistant in action (0:30)
