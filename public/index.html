@@ -869,6 +869,22 @@
             .action-cards {
                 grid-template-columns: 1fr;
             }
+            
+            /* Carbon Footprint & Community Comparison - Mobile Fix */
+            .community-comparison-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            #carbonChart,
+            #comparisonChart {
+                max-height: 300px !important;
+            }
+            
+            #percentageValue,
+            #rankNumber {
+                font-size: 2em !important;
+            }
         }
     </style>
 </head>
@@ -987,7 +1003,7 @@
             <!-- Community Comparison -->
             <div style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
                 <h3 style="margin-bottom: 20px; color: #2196F3;">👥 Compare With Community</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="community-comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                     <div>
                         <canvas id="comparisonChart" style="max-height: 250px;"></canvas>
                     </div>
