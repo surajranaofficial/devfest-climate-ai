@@ -363,6 +363,11 @@ app.post('/api/submit-action', async (req, res) => {
 });
 
 // Health Check
+// Health check endpoint for Render
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', service: 'Climate Action AI' });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'running',
