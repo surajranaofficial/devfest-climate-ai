@@ -26,11 +26,40 @@ const getClimateData = () => ({
   trendingUp: true
 });
 
+// Language detection helper
+function detectLanguage(text) {
+  // Check for Hindi/Devanagari characters
+  const hindiRegex = /[\u0900-\u097F]/;
+  if (hindiRegex.test(text)) {
+    return 'Hindi';
+  }
+  
+  // Check for Hinglish patterns (Hindi words in Latin script)
+  const hinglishWords = ['kaise', 'kya', 'aur', 'hai', 'hain', 'mein', 'se', 'ko', 'ka', 'ki', 'ke', 'theek', 'kare'];
+  const lowerText = text.toLowerCase();
+  const hasHinglishWords = hinglishWords.some(word => lowerText.includes(word));
+  
+  if (hasHinglishWords) {
+    return 'Hinglish';
+  }
+  
+  // Default to English
+  return 'English';
+}
+
 // AI Climate Assistant with retry logic
 app.post('/api/ai-assistant', async (req, res) => {
   try {
     console.log('Request Body:', req.body);
     const { question, location, context } = req.body;
+    
+    // Detect the language of the question
+    const detectedLanguage = detectLanguage(question);
+    console.log('Detected Language:', detectedLanguage);
+    
+    const languageInstruction = detectedLanguage === 'English' 
+      ? 'CRITICAL: Respond ONLY in ENGLISH. Do NOT use Hindi or Hinglish.'
+      : `CRITICAL: Respond ONLY in ${detectedLanguage}. Match the user's language style exactly.`;
     
     const prompt = `You are a climate scientist and activist assistant. 
     User Location: ${location || 'Global'}
@@ -38,10 +67,7 @@ app.post('/api/ai-assistant', async (req, res) => {
     
     User Question: "${question}"
     
-    IMPORTANT: Your response language should match the language of the user's question. 
-    - If the user asks in English, respond in English.
-    - If the user asks in Hinglish or Hindi, respond in Hinglish.
-    - Default to English if the language is unclear.
+    ${languageInstruction}
     
     Provide:
     1. Clear, scientific answer (but simple language)
